@@ -11,7 +11,7 @@
     <title>김우석 ♥ 신부이름 결혼합니다</title>
 
     <link rel="stylesheet" href="style.css">
-
+    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=cmw8tb760z"></script>
 </head>
 
 <body>
@@ -22,29 +22,34 @@
     </section>
 
     <section class="message">
-        <p>
-            서로 다른 길을 걷던 두 사람이
-            이제 같은 길을 걸어가려 합니다.
-            소중한 분들을 초대합니다.
+        <p>혼자 걷던 길 위에 서로의 손을 맞잡습니다.</p>
+        <p>두 사람이 함께함이 한 사람보다 나음이라 하신 말씀처럼,</p>
+        <p>기쁨은 나누고 넘어질 때에는 서로를 일으키며</p>
+        <p>같은 방향을 바라보려 합니다. -전도서 4장 9절~10절</p>
+        <br>
+        <p>귀한 걸음으로 자리에 함께하시어,</p>
+        <p>축복해주시고 기도해 주시면 감사하겠습니다.</p>
+        <p>2026년 6월 20일</p>
+        <p>저희, 두사람이 함께 걸음을 시작합니다.</p>
         </p>
     </section>
 
     <section class="gallery">
 
-        <h2>우리의 순간</h2>
+        <h2>Gallery</h2>
 
         <div class="slider">
 
-            <img src="img/PCY00094.jpg" draggable="false">
-            <img src="img/PCY00277.jpg" draggable="false">
-            <img src="img/PCY00449.jpg" draggable="false">
-            <img src="img/PCY00642.jpg" draggable="false">
-            <img src="img/PCY00987.jpg" draggable="false">
-            <img src="img/PCY01516.jpg" draggable="false">
-            <img src="img/PCY01618-2.jpg" draggable="false">
-            <img src="img/PCY01782.jpg" draggable="false">
-            <img src="img/PCY01851.jpg" draggable="false">
-            <img src="img/PCY01906.jpg" draggable="false">
+            <img src="img/PCY00094.jpg">
+            <img src="img/PCY00277.jpg">
+            <img src="img/PCY00449.jpg">
+            <img src="img/PCY00642.jpg">
+            <img src="img/PCY00987.jpg">
+            <img src="img/PCY01516.jpg">
+            <img src="img/PCY01618-2.jpg">
+            <img src="img/PCY01782.jpg">
+            <img src="img/PCY01851.jpg">
+            <img src="img/PCY01906.jpg">
 
         </div>
 
@@ -63,10 +68,15 @@
     <section class="map">
 
         <h2>오시는 길</h2>
+        <div id="map" style="width:100%;height:400px;">
+            var mapOptions = {
+            center: new naver.maps.LatLng(37.3595704, 127.105399),
+            zoom: 10
+            };
 
-        <a href="https://map.kakao.com" target="_blank">
-            카카오맵으로 보기
-        </a>
+            var map = new naver.maps.Map('map', mapOptions);
+        </div>
+
 
     </section>
 

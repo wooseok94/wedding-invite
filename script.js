@@ -8,7 +8,7 @@ let position = 0;
 function startDrag(e) {
     isDown = true;
     slider.style.cursor = "grabbing";
-    startX = e.pageX || (e.touches && e.touches[0].pageX);
+    startX = e.pageX || (e.touches && e.touches[0].clientX);
     startPosition = position;
 }
 
@@ -20,7 +20,7 @@ function endDrag() {
 function moveDrag(e) {
     if (!isDown) return;
     e.preventDefault();
-    const x = e.pageX || (e.touches && e.touches[0].pageX);
+    const x = e.pageX || (e.touches && e.touches[0].clientX);
     const deltaX = x - startX;
     position = startPosition + deltaX;
     const maxPosition = 0;
@@ -31,14 +31,14 @@ function moveDrag(e) {
 }
 
 slider.addEventListener("mousedown", startDrag);
-slider.addEventListener("touchstart", startDrag);
+slider.addEventListener("touchstart", startDrag, { passive: false });
 
 slider.addEventListener("mouseleave", endDrag);
 slider.addEventListener("mouseup", endDrag);
 slider.addEventListener("touchend", endDrag);
 
 slider.addEventListener("mousemove", moveDrag);
-slider.addEventListener("touchmove", moveDrag);
+slider.addEventListener("touchmove", moveDrag, { passive: false });
 
 document.querySelectorAll("img").forEach(img => {
     img.setAttribute("draggable", "false");
