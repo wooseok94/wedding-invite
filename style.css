@@ -27,7 +27,7 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding-top: 100px;
+    padding-top: 80px;
     /* 5. 글자 스타일 */
     color: #ffffff;
     text-align: center;
@@ -47,6 +47,10 @@ body {
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
+.hero p+p {
+    margin-top: -2px;
+}
+
 .hero h1 {
     font-size: 32px;
 }
@@ -57,63 +61,75 @@ body {
 }
 
 .gallery {
-    padding: 40px 0;
-    overflow: hidden;
-    /* 영역 밖으로 나가는 사진 숨김 */
-    width: 100%;
+    position: relative;
+    max-width: 800px;
+    margin: 50px auto;
+    text-align: center;
+    background-color: #fff;
+    /* 전체 배경 흰색 */
 }
 
+/* 사진이 들어가는 틀 */
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    /* 높이 유지 */
+    overflow: hidden;
+    /* 영역 밖 사진 숨김 */
+    background-color: #fff;
+    /* ⭐ 뒤에 짤린 배경 흰색으로 변경 */
+}
+
+/* 사진들을 가로로 한 줄로 세움 */
 .slider {
     display: flex;
-    gap: 16px;
-    padding: 0 20px;
-
-    /* 중요: 아이폰에서 가로 드래그를 허용하고 세로 스크롤을 방해하지 않음 */
-    touch-action: pan-y;
-    -webkit-overflow-scrolling: touch;
-    /* iOS 부드러운 스크롤 지원 */
-
-    cursor: grab;
-    will-change: transform;
-    /* 애니메이션 성능 최적화 */
-    width: max-content;
+    /* 가로 정렬 */
+    height: 100%;
+    transition: transform 0.5s ease-out;
+    /* ⭐ 슬라이드 애니메이션 */
 }
 
 .slider img {
-    height: 70vh;
-    width: auto;
-    border-radius: 12px;
-
-    /* 드래그 시 이미지 선택/복사 방지 (터치 방해 요소 제거) */
-    -webkit-user-select: none;
-    -webkit-touch-callout: none;
-    -webkit-user-drag: none;
-    pointer-events: none;
-    flex-shrink: 0;
-}
-
-.slider:active {
-    cursor: grabbing;
-}
-
-.slider img {
-    height: 70vh;
-    width: auto;
-    border-radius: 12px;
+    /* 슬라이더 안에서 한 장씩 꽉 차게 */
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
-
-    /* 드래그 방해 요소 차단 */
-    user-select: none;
-    -webkit-user-drag: none;
-    pointer-events: none;
-    flex-shrink: 0;
-    /* 이미지가 좁아지지 않게 */
+    /* 사진 안 잘리게 유지 */
+    opacity: 1;
+    /* 페이드 효과가 아니므로 항상 1 */
+    position: static;
+    /* absolute 해제 */
 }
 
+/* 버튼 스타일 (z-index 확인) */
+.prev-btn,
+.next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.05);
+    /* 버튼 배경을 아주 연하게 */
+    color: #333;
+    border: none;
+    padding: 20px 10px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 20px;
+}
 
+.prev-btn {
+    left: 0;
+}
 
-.slider::-webkit-scrollbar {
-    display: none;
+.next-btn {
+    right: 0;
+}
+
+.counter {
+    margin-top: 15px;
+    color: #888;
 }
 
 .info {

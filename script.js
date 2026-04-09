@@ -1,53 +1,41 @@
-const slider = document.querySelector(".slider");
+document.addEventListener('DOMContentLoaded', function () {
+    const slider = document.querySelector('.slider');
+    const images = document.querySelectorAll('.slider img');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    const counter = document.querySelector('.counter');
 
-let isDown = false;
-let startX;
-let startPosition = 0;
-let position = 0;
+    let currentIndex = 0;
+    const totalImages = images.length;
 
-function getClientX(e) {
-    // 터치와 마우스 좌표를 통합해서 가져옴
-    return e.touches ? e.touches[0].clientX : e.clientX;
-}
+    function updateSlider() {
+        // ⭐ 가로로 이동하는 핵심 로직 (현재 인덱스 * 100%)
+        slider.style.transform = `translateX(-${currentIndex * 100}%)`;
 
-function startDrag(e) {
-    isDown = true;
-    slider.style.transition = 'none'; // 드래그 중엔 즉각 반응
-    startX = getClientX(e);
-    startPosition = position;
-}
+        // 카운터 업데이트
+        if (counter) {
+            counter.textContent = `${currentIndex + 1} / ${totalImages}`;
+        }
+    }
 
-function moveDrag(e) {
-    if (!isDown) return;
+    // 다음 버튼
+    nextBtn.addEventListener('click', () => {
+        currentIndex++;
+        if (currentIndex >= totalImages) {
+            currentIndex = 0; // 무한 반복
+        }
+        updateSlider();
+    });
 
-    const x = getClientX(e);
-    const walk = x - startX;
+    // 이전 버튼
+    prevBtn.addEventListener('click', () => {
+        currentIndex--;
+        if (currentIndex < 0) {
+            currentIndex = totalImages - 1; // 무한 반복
+        }
+        updateSlider();
+    });
 
-    // 이동 거리 계산
-    let newPosition = startPosition + walk;
-
-    // 한계 지점 설정
-    const minPosition = -(slider.scrollWidth - window.innerWidth + 40);
-    const maxPosition = 0;
-
-    // 슬라이더 끝에 도달했을 때 약간의 저항감(고무줄 효과)을 주거나 딱 멈추게 설정
-    position = Math.max(minPosition, Math.min(maxPosition, newPosition));
-
-    // 아이폰 성능을 위해 translateX 대신 translate3d 사용
-    slider.style.transform = `translate3d(${position}px, 0, 0)`;
-}
-
-function endDrag() {
-    isDown = false;
-    slider.style.transition = 'transform 0.3s ease-out'; // 놓았을 때 부드러운 마무리
-}
-
-// 이벤트 연결
-slider.addEventListener("mousedown", startDrag);
-slider.addEventListener("touchstart", startDrag, { passive: true }); // passive: true로 성능 향상
-
-window.addEventListener("mousemove", moveDrag);
-window.addEventListener("touchmove", moveDrag, { passive: true });
-
-window.addEventListener("mouseup", endDrag);
-window.addEventListener("touchend", endDrag);
+    // 초기 상태 설정
+    updateSlider();
+});
