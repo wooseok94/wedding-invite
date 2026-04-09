@@ -8,28 +8,30 @@ body {
 
 .hero {
     /* 1. 배경 이미지 설정 */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('img/2.jpg');
+    background-image: url('img/1.jpg');
 
     /* 2. 배경 이미지 위치 및 크기 최적화 */
     background-size: cover;
     /* 이미지가 영역에 꽉 차게 */
-    background-position: center;
+    background-position: center top;
     /* 이미지 중앙이 보이게 */
     background-repeat: no-repeat;
 
     /* 3. 높이 설정 (화면의 80% 정도 차지하거나 꽉 차게) */
     height: 100vh;
+    min-height: 500px;
     /* vh는 화면 높이 단위입니다 */
 
     /* 4. 텍스트 중앙 정렬 */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-
+    padding-top: 120px;
     /* 5. 글자 스타일 */
     color: #ffffff;
     text-align: center;
+    box-sizing: border-box;
 }
 
 .hero h1 {
