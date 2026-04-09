@@ -70,17 +70,45 @@
         <h2>오시는 길</h2>
         <div id="map" style="width:100%;height:400px;">
             <script>
+                // 1. 지도 옵션 설정
                 var mapOptions = {
-                    center: new naver.maps.LatLng(37.3595704, 127.105399), // 식장 위도, 경도
-                    zoom: 16
+                    center: new naver.maps.LatLng(37.572793, 127.011311), // SW컨벤션센터 좌표
+                    zoom: 17, // 확대 레벨 (15~18 사이 추천)
+                    zoomControl: true, // 확대/축소 컨트롤 표시
+                    zoomControlOptions: {
+                        position: naver.maps.Position.TOP_RIGHT
+                    }
                 };
 
+                // 2. 지도 생성
                 var map = new naver.maps.Map('map', mapOptions);
 
-                // 마커 표시
+                // 3. 마커(핀) 설정
                 var marker = new naver.maps.Marker({
-                    position: new naver.maps.LatLng(37.3595704, 127.105399),
-                    map: map
+                    position: new naver.maps.LatLng(37.572793, 127.011311),
+                    map: map,
+                    title: 'SW컨벤션센터' // 마우스 오버 시 표시될 이름
+                });
+
+                // 4. 정보창 표시 (선택 사항: 클릭 시 예식장 이름 노출)
+                var contentString = [
+                    '<div style="padding:10px; min-width:150px; line-height:150%; text-align:center;">',
+                    '   <h4 style="margin:0;">SW컨벤션센터</h4>',
+                    '   <p style="margin:0; font-size:12px;">서울 종로구 지봉로 19 시즌빌딩 11층</p>',
+                    '</div>'
+                ].join('');
+
+                var infowindow = new naver.maps.InfoWindow({
+                    content: contentString
+                });
+
+                // 마커 클릭 시 정보창 열기
+                naver.maps.Event.addListener(marker, "click", function (e) {
+                    if (infowindow.getMap()) {
+                        infowindow.close();
+                    } else {
+                        infowindow.open(map, marker);
+                    }
                 });
             </script>
         </div>
