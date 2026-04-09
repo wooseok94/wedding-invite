@@ -72,9 +72,11 @@
             <script>
                 // 1. 지도 옵션 설정
                 var mapOptions = {
-                    center: new naver.maps.LatLng(37.572793, 127.011311), // SW컨벤션센터 좌표
-                    zoom: 17, // 확대 레벨 (15~18 사이 추천)
-                    zoomControl: true, // 확대/축소 컨트롤 표시
+                    // SW컨벤션센터 중심 좌표
+                    center: new naver.maps.LatLng(37.572718, 127.011383),
+                    zoom: 17, // 동묘앞역 인근이 잘 보이는 배율
+                    minZoom: 10,
+                    zoomControl: true,
                     zoomControlOptions: {
                         position: naver.maps.Position.TOP_RIGHT
                     }
@@ -83,33 +85,29 @@
                 // 2. 지도 생성
                 var map = new naver.maps.Map('map', mapOptions);
 
-                // 3. 마커(핀) 설정
+                // 3. 마커 설정
                 var marker = new naver.maps.Marker({
-                    position: new naver.maps.LatLng(37.572793, 127.011311),
+                    position: new naver.maps.LatLng(37.572718, 127.011383),
                     map: map,
-                    title: 'SW컨벤션센터' // 마우스 오버 시 표시될 이름
-                });
-
-                // 4. 정보창 표시 (선택 사항: 클릭 시 예식장 이름 노출)
-                var contentString = [
-                    '<div style="padding:10px; min-width:150px; line-height:150%; text-align:center;">',
-                    '   <h4 style="margin:0;">SW컨벤션센터</h4>',
-                    '   <p style="margin:0; font-size:12px;">서울 종로구 지봉로 19 시즌빌딩 11층</p>',
-                    '</div>'
-                ].join('');
-
-                var infowindow = new naver.maps.InfoWindow({
-                    content: contentString
-                });
-
-                // 마커 클릭 시 정보창 열기
-                naver.maps.Event.addListener(marker, "click", function (e) {
-                    if (infowindow.getMap()) {
-                        infowindow.close();
-                    } else {
-                        infowindow.open(map, marker);
+                    icon: {
+                        // 기본 핀이 너무 심심하다면 색상이나 이미지를 변경할 수 있습니다.
+                        content: '<div style="background:#ff4d4d; width:12px; height:12px; border-radius:50%; border:2px solid #fff; box-shadow:0 0 5px rgba(0,0,0,0.5);"></div>',
+                        anchor: new naver.maps.Point(6, 6)
                     }
                 });
+
+                // 4. 정보창 (마커 위에 장소 이름 표시)
+                var infowindow = new naver.maps.InfoWindow({
+                    content: '<div style="padding:10px; font-weight:bold; font-size:14px; border:none;">SW컨벤션센터</div>',
+                    backgroundColor: "white",
+                    borderColor: "#ccc",
+                    borderWidth: 1,
+                    disableAnchor: true,
+                    pixelOffset: new naver.maps.Point(0, -10)
+                });
+
+                // 페이지 로드 시 정보창을 바로 띄워줍니다.
+                infowindow.open(map, marker);
             </script>
         </div>
 
