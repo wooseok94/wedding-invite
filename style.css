@@ -7,11 +7,42 @@ body {
 }
 
 .hero {
-    height: 70vh;
+    /* 1. 배경 이미지 설정 */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('img/2.jpg');
+
+    /* 2. 배경 이미지 위치 및 크기 최적화 */
+    background-size: cover;
+    /* 이미지가 영역에 꽉 차게 */
+    background-position: center;
+    /* 이미지 중앙이 보이게 */
+    background-repeat: no-repeat;
+
+    /* 3. 높이 설정 (화면의 80% 정도 차지하거나 꽉 차게) */
+    height: 100vh;
+    /* vh는 화면 높이 단위입니다 */
+
+    /* 4. 텍스트 중앙 정렬 */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: #f7f7f7;
+    align-items: center;
+
+    /* 5. 글자 스타일 */
+    color: #ffffff;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    /* 글씨 그림자로 가독성 확보 */
+}
+
+.hero p {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .hero h1 {
@@ -25,17 +56,29 @@ body {
 
 .gallery {
     padding: 40px 10px;
+    overflow: hidden;
 }
 
 .slider {
     display: flex;
-    overflow-x: hidden;
     gap: 16px;
-    padding: 20px;
-    scroll-snap-type: x mandatory;
+    padding: 0 20px;
+    /* 시작 부분에 약간의 여백 */
+
+    /* 자바스크립트 드래그 구현 시 아래 속성들은 방해가 될 수 있어 제거/수정합니다 */
+    overflow-x: visible;
+    /* 자바스크립트 이동을 위해 보이게 설정 */
+    scroll-snap-type: none;
+    /* 커스텀 드래그와 충돌하므로 제거 */
+    touch-action: pan-y;
+    /* 세로 스크롤은 허용, 가로 드래그는 JS가 제어 */
+
     cursor: grab;
     position: relative;
-    width: 100%;
+    width: max-content;
+    /* 내용물만큼 길어지게 설정 */
+    transition: transform 0.1s ease-out;
+    /* 이동 시 부드러운 느낌 추가 */
 }
 
 .slider:active {
@@ -46,11 +89,14 @@ body {
     height: 70vh;
     width: auto;
     border-radius: 12px;
-    scroll-snap-align: center;
     object-fit: contain;
+
+    /* 드래그 방해 요소 차단 */
     user-select: none;
     -webkit-user-drag: none;
     pointer-events: none;
+    flex-shrink: 0;
+    /* 이미지가 좁아지지 않게 */
 }
 
 
