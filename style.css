@@ -103,28 +103,86 @@ body {
     /* absolute 해제 */
 }
 
-/* 버튼 스타일 (z-index 확인) */
 .prev-btn,
 .next-btn {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.05);
-    /* 버튼 배경을 아주 연하게 */
-    color: #333;
+    top: 0;
+    /* 사진 맨 위부터 */
+    height: 100%;
+    /* 사진 맨 아래까지 클릭 영역 확장 */
+    width: 15%;
+    /* ⭐ 클릭 영역을 가로로 넓게 (사진의 15% 차지) */
+
+    background: transparent;
+    /* 평소엔 완전 투명 */
     border: none;
-    padding: 20px 10px;
     cursor: pointer;
-    z-index: 10;
-    font-size: 20px;
+    outline: none;
+    z-index: 100;
+    /* 사진보다 위에 */
+
+    /* 부드러운 전환 효과 */
+    transition: background 0.3s ease, opacity 0.3s ease;
+
+    display: flex;
+    align-items: center;
+    /* 화살표 세로 중앙 */
+    justify-content: center;
+    /* 화살표 가로 중앙 */
+
+    opacity: 0.5;
+    /* 평소엔 살짝 투명하게 숨김 */
 }
 
+/* 마우스를 올리거나(PC), 터치했을 때(모바일) */
+.prev-btn:hover,
+.next-btn:hover {
+    background: rgba(0, 0, 0, 0.03);
+    /* 아주 미세한 배경색 추가 */
+    opacity: 1;
+    /* 화살표가 선명해짐 */
+}
+
+/* 왼쪽 버튼 위치 */
 .prev-btn {
     left: 0;
 }
 
+/* 오른쪽 버튼 위치 */
 .next-btn {
     right: 0;
+}
+
+/* --- ⭐ CSS로 세련된 화살표 그리기 (::after 가상 요소 사용) --- */
+.prev-btn::after,
+.next-btn::after {
+    content: '';
+    width: 20px;
+    /* 화살표 크기 */
+    height: 20px;
+    border-top: 2px solid #333;
+    /* 화살표 두께와 색상 */
+    border-left: 2px solid #333;
+    display: block;
+}
+
+/* 왼쪽 화살표 회전 */
+.prev-btn::after {
+    transform: rotate(-45deg);
+    margin-left: 10px;
+    /* 살짝 안쪽으로 이동 */
+}
+
+/* 오른쪽 화살표 회전 */
+.next-btn::after {
+    transform: rotate(135deg);
+    margin-right: 10px;
+    /* 살짝 안쪽으로 이동 */
+}
+
+/* 모바일 기기 최적화: 클릭 시 파란색 하이라이트 제거 */
+button {
+    -webkit-tap-highlight-color: transparent;
 }
 
 .counter {
