@@ -22,7 +22,7 @@
 <body>
 
     <section class="hero">
-        <h1>김우석 ♥ 신한영</h1>
+        <h1>김우석 <span class="heart">♥</span> 신한영</h1>
         <p>2026년 6월 20일 토요일</p>
         <p>오후 12시 10분</p>
     </section>
@@ -43,7 +43,7 @@
 
     <section class="gallery">
 
-        <h2>Gallery</h2>
+        <h2>사진첩</h2>
         <div class="slider-container" style="position: relative;">
             <div class="slider">
 
@@ -70,14 +70,59 @@
 
     </section>
 
-    <section class="info">
+    <section class="calendar-section">
+        <h2>날짜</h2>
+        <div class="wedding-date-info">
+            <h3 class="wedding-year-month">2026. 6. 20</h3>
+            <p class="wedding-time">토요일 오후 12시 10분</p>
+        </div>
 
-        <h2>Wedding Day</h2>
+        <div class="calendar">
+            <div class="calendar-header">
+                <span>SUN</span><span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span>
+            </div>
+            <div class="calendar-days">
+                <div class="day empty"></div>
+                <div class="day">1</div>
+                <div class="day">2</div>
+                <div class="day">3</div>
+                <div class="day">4</div>
+                <div class="day">5</div>
+                <div class="day sat">6</div>
+                <div class="day sun">7</div>
+                <div class="day">8</div>
+                <div class="day">9</div>
+                <div class="day">10</div>
+                <div class="day">11</div>
+                <div class="day">12</div>
+                <div class="day sat">13</div>
+                <div class="day sun">14</div>
+                <div class="day">15</div>
+                <div class="day">16</div>
+                <div class="day">17</div>
+                <div class="day">18</div>
+                <div class="day">19</div>
+                <div class="day selected">20</div>
+                <div class="day sun">21</div>
+                <div class="day">22</div>
+                <div class="day">23</div>
+                <div class="day">24</div>
+                <div class="day">25</div>
+                <div class="day">26</div>
+                <div class="day sat">27</div>
+                <div class="day sun">28</div>
+                <div class="day">29</div>
+                <div class="day">30</div>
+                <div class="day empty"></div>
+                <div class="day empty"></div>
+                <div class="day empty"></div>
+                <div class="day empty"></div>
+            </div>
+        </div>
 
-        <p>2026년 6월 20일 토요일</p>
-        <p>오후 12시 10분</p>
-        <p>SW컨벤션</p>
-
+        <div class="d-day-counter">
+            우석 <span class="heart">♥</span> 한영의 결혼식이 <strong id="d-day-count">00</strong>일 남았습니다.
+        </div>
     </section>
 
     <section class="map">
@@ -148,16 +193,100 @@
 
     </section>
 
+    <section class="account">
+        <h2>마음 전하기</h2>
+        <br>
+        <p class="subtitle">축하의 마음을 담아 축의금을 전달해 보세요.</p>
+        <p class="subtitle">복사 버튼을 클릭해 계좌번호를 복사 할 수 있습니다</p>
+        <br>
+        <br>
+        <br>
+        <details class="account-group">
+            <summary>신랑 김우석</summary>
+            <div class="account-content">
+                <div class="account-row">
+                    <span class="bank-name">기업은행</span>
+                    <span class="account-number">478-074904-01-018</span>
+                    <button onclick="copyAccount('478-074904-01-018')" class="btn-copy"><img src="img/link_copy.png"
+                            alt="링크 복사"></button>
+                </div>
+            </div>
+        </details>
+        <details class="account-group">
+            <summary>신랑 아버지 김시운</summary>
+            <div class="account-content">
+                <div class="account-row">
+                    <span class="bank-name">농협은행</span>
+                    <span class="account-number">789-02-204580</span>
+                    <button onclick="copyAccount('789-02-204580')" class="btn-copy"><img src="img/link_copy.png"
+                            alt="링크 복사"></button>
+                </div>
+            </div>
+        </details>
+        <details class="account-group">
+            <summary>신랑 어머니 이순덕</summary>
+            <div class="account-content">
+                <div class="account-row">
+                    <span class="bank-name">농협은행</span>
+                    <span class="account-number">356-0618-7266-13</span>
+                    <button onclick="copyAccount('356-0618-7266-13')" class="btn-copy"><img src="img/link_copy.png"
+                            alt="링크 복사"></button>
+                </div>
+            </div>
+        </details>
+        <br>
+        <br>
+        <details class="account-group">
+            <summary>신부 신한영</summary>
+            <div class="account-content">
+                <div class="account-row">
+                    <span class="bank-name">우리은행</span>
+                    <span class="account-number">1002-649-901146</span>
+                    <button onclick="copyAccount('1002-649-901146')" class="btn-copy"><img src="img/link_copy.png"
+                            alt="링크 복사"></button>
+                </div>
+            </div>
+        </details>
+        <details class="account-group">
+            <summary>신부 아버지 신재학</summary>
+            <div class="account-content">
+                <div class="account-row">
+                    <span class="bank-name">국민은행</span>
+                    <span class="account-number">226-21-0443-634</span>
+                    <button onclick="copyAccount('226-21-0443-634')" class="btn-copy"><img src="img/link_copy.png"
+                            alt="링크 복사"></button>
+                </div>
+            </div>
+        </details>
+        <details class="account-group">
+            <summary>신부 어머니 유은순</summary>
+            <div class="account-content">
+                <div class="account-row">
+                    <span class="bank-name">우리은행</span>
+                    <span class="account-number">1002-456-789012</span>
+                    <button onclick="copyAccount('1002-456-789012')" class="btn-copy"><img src="img/link_copy.png"
+                            alt="링크 복사"></button>
+                </div>
+            </div>
+        </details>
+    </section>
+
     <section class="share">
         <h2>공유하기</h2>
         <div class="share-buttons">
-            <a href="javascript:shareKakao()" id="kakao-link-btn">
-                <img src="img/kakaotalk_sharing_btn_small_ov.png" alt="카카오톡 공유">
-            </a>
+            <div class="share-item">
+                <a href="javascript:shareKakao()" id="kakao-link-btn">
+                    <img src="img/kakaotalk_sharing_btn_small_ov.png" alt="카카오톡 공유">
+                </a>
+                <span>카카오톡 공유</span>
+            </div>
 
-            <button onclick="copyToClipboard()" class="copy-btn">
-                <img src="img/link_copy.png" width="40" alt="링크 복사">
-            </button>
+            <div class="share-item">
+                <button onclick="copyToClipboard()" class="copy-btn">
+                    <img src="img/link_copy.png" width="40" alt="링크 복사">
+                </button>
+                <span>링크 복사</span>
+            </div>
         </div>
     </section>
 

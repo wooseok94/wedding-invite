@@ -251,3 +251,43 @@ function copyToClipboard() {
         document.body.removeChild(textArea);
     });
 }
+
+function copyAccount(accountNumber) {
+    navigator.clipboard.writeText(accountNumber).then(() => {
+        // 기존에 만들어둔 토스트 알림 함수 호출
+        if (typeof showToast === 'function') {
+            const toast = document.getElementById('toast');
+            toast.textContent = '계좌번호가 복사되었습니다.'; // 메시지 변경
+            showToast();
+        } else {
+            alert('계좌번호가 복사되었습니다.');
+        }
+    }).catch(err => {
+        console.error('복사 실패:', err);
+    });
+}
+
+function updateDDay() {
+    const weddingDate = new Date("2026-06-20T12:10:00"); // 예식 날짜 설정
+    const now = new Date();
+
+    // 두 날짜의 차이 계산 (밀리초 단위)
+    const diff = weddingDate - now;
+
+    // 일(day) 단위로 변환
+    const dDay = Math.ceil(diff / (1000 * 60 * 60 * 24));
+
+    const dDayElement = document.getElementById("d-day-count");
+    if (dDayElement) {
+        if (dDay > 0) {
+            dDayElement.textContent = dDay;
+        } else if (dDay === 0) {
+            dDayElement.textContent = "Day"; // 당일인 경우
+        } else {
+            dDayElement.textContent = "+" + Math.abs(dDay); // 지난 경우
+        }
+    }
+}
+
+// 페이지 로드 시 실행
+document.addEventListener("DOMContentLoaded", updateDDay);
