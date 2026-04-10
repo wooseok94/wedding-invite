@@ -137,8 +137,6 @@ body {
 /* 마우스를 올리거나(PC), 터치했을 때(모바일) */
 .prev-btn:hover,
 .next-btn:hover {
-    background: rgba(0, 0, 0, 0.03);
-    /* 아주 미세한 배경색 추가 */
     opacity: 1;
     /* 화살표가 선명해짐 */
 }
