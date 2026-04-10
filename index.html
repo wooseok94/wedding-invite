@@ -13,15 +13,9 @@
     <link rel="stylesheet" href="style.css">
 
     <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=cmw8tb760z"></script>
-    <script src="https://t1.kakaocdn.net/kakao_js_sdk/v2/kakao.min.js" integrity="eec407ad50205d21489eb155bd4f8567"
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.1/kakao.min.js"
+        integrity="sha384-OL+ylM/iuPLtW5U3XcvLSGhE8JzReKDank5InqlHGWPhb4140/yrBw0bg0y7+C9J"
         crossorigin="anonymous"></script>
-    <script>
-        // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해야 합니다.
-        Kakao.init('eec407ad50205d21489eb155bd4f8567');
-
-        // SDK 초기화 여부를 판단합니다.
-        console.log(Kakao.isInitialized());
-    </script>
     <script src="script.js" defer></script>
 </head>
 
@@ -95,10 +89,10 @@
                 var mapOptions = {
                     center: new naver.maps.LatLng(37.571657, 127.015346), // SW컨벤션센터 위치
                     zoom: 17,
-                    zoomControl: true,
-                    zoomControlOptions: {
-                        position: naver.maps.Position.TOP_RIGHT
-                    }
+                    zoomControl: false,
+                    mapDataControl: false,
+                    logoControl: false,
+                    scaleControl: false
                 };
 
                 var map = new naver.maps.Map('map', mapOptions);
@@ -133,7 +127,24 @@
                 infowindow.open(map, marker);
             </script>
         </div>
+        <div class="map-info">
+            <p class="address">서울 종로구 지봉로 19 11층 (창신동, 시즌빌딩)</p>
+            <div class="subway-info">
+                <span class="line line-1">1</span>
+                <span class="line line-6">6</span>
+                <span class="text"><strong>동묘앞역 6번 출구 앞</strong></span>
+            </div>
+            <div class="navigation-buttons">
+                <a href="https://kko.to/gyKd0MuND6" target="_blank" class="nav-btn">
+                    <img src="https://t1.kakaocdn.net/kakaocorp/kakaocorp/admin/1ca66319017800001.png" alt="카카오맵">
+                    <span>카카오맵</span>
+                </a>
 
+                <a href="https://naver.me/GzE9CXtD" target="_blank" class="nav-btn">
+                    <img src="img/nmap-icon.png" alt="네이버 지도"> <span>네이버 지도</span>
+                </a>
+            </div>
+        </div>
 
     </section>
 

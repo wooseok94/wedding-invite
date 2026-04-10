@@ -315,3 +315,100 @@ a {
     height: 100%;
     display: block;
 }
+
+.map-info {
+    padding: 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.map-info .address {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.subway-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    /* 아이콘과 텍스트 사이 간격 */
+}
+
+/* 지하철 호선 공통 동그라미 스타일 */
+.line {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    line-height: 1;
+}
+
+/* 1호선 색상 */
+.line-1 {
+    background-color: #0052A4;
+}
+
+/* 6호선 색상 */
+.line-6 {
+    background-color: #CD7C2F;
+}
+
+.subway-info .text {
+    font-size: 15px;
+    color: #666;
+}
+
+.subway-info strong {
+    color: #333;
+    font-weight: 600;
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px 20px 30px;
+    background-color: #fff;
+}
+
+.nav-btn {
+    display: flex;
+    flex-direction: column;
+    /* 아이콘 아래 글자 배치 */
+    align-items: center;
+    text-decoration: none;
+    gap: 8px;
+    flex: 1;
+    /* 버튼 너비 균등 배분 */
+    max-width: 120px;
+}
+
+.nav-btn img {
+    width: 45px;
+    /* 아이콘 크기 */
+    height: 45px;
+    border-radius: 12px;
+    /* 부드러운 곡선 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* 살짝 입체감 */
+    transition: transform 0.2s;
+}
+
+.nav-btn span {
+    font-size: 13px;
+    color: #666;
+    font-weight: 500;
+}
+
+/* 누를 때 반응 */
+.nav-btn:active img {
+    transform: scale(0.92);
+}
