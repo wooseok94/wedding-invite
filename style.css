@@ -276,6 +276,17 @@ a {
     /* 정위치로 올림 */
 }
 
+/* 공유 버튼 정렬 */
+.share-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    /* 버튼 사이 간격 */
+    margin-top: 20px;
+}
+
+/* 링크 복사 버튼 스타일 */
 .copy-btn {
     background: none;
     border: none;
@@ -286,12 +297,20 @@ a {
     justify-content: center;
     width: 50px;
     height: 50px;
+    outline: none;
     -webkit-tap-highlight-color: transparent;
     /* 아이폰 터치 잔상 제거 */
+
+    /* 마우스 올렸을 때 살짝 투명하게 효과 (선택사항) */
+    transition: opacity 0.2s;
 }
 
-.copy-btn svg,
-.copy-btn img {
+.copy-btn:hover {
+    opacity: 0.8;
+}
+
+/* SVG 아이콘 크기 고정 */
+.copy-btn svg {
     width: 100%;
     height: 100%;
     display: block;
