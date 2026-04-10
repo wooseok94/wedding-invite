@@ -169,3 +169,85 @@ document.addEventListener('DOMContentLoaded', function () {
 
     updateSlider(false);
 });
+
+// 카카오 초기화 (JavaScript 키 입력)
+
+Kakao.init('eec407ad50205d21489eb155bd4f8567');
+Kakao.isInitialized();
+
+function shareKakao() {
+    Kakao.Share.sendDefault({
+        objectType: 'feed',
+        content: {
+            title: '김우석 ♥ 신한영 결혼합니다',
+            description: '2026년 6월 20일 토요일 오후 12시 10분',
+            imageUrl:
+                'https://wooseok94.github.io/wedding-invite/img/1.jpg', // 메시지에 보일 대표 이미지 주소
+            link: {
+                mobileWebUrl: 'https://wooseok94.github.io/wedding-invite/',
+                webUrl: 'https://wooseok94.github.io/wedding-invite/',
+            },
+        },
+        buttons: [
+            {
+                title: '모바일 청첩장 보기',
+                link: {
+                    mobileWebUrl: 'https://wooseok94.github.io/wedding-invite/',
+                    webUrl: 'https://wooseok94.github.io/wedding-invite/',
+                },
+            },
+        ],
+    });
+}
+// ⭐ 1. 토스트 알림을 위한 HTML 요소를 동적으로 추가
+document.addEventListener('DOMContentLoaded', () => {
+    const toastDiv = document.createElement('div');
+    toastDiv.id = 'toast';
+    toastDiv.textContent = '링크가 복사되었습니다.';
+    document.body.appendChild(toastDiv);
+});
+
+// ⭐ 2. 토스트 알림을 보여주는 함수
+function showToast() {
+    const toast = document.getElementById('toast');
+    if (!toast) return;
+
+    // 이미 떠 있다면 중복 실행 방지
+    if (toast.classList.contains('show')) return;
+
+    // 'show' 클래스 추가
+    toast.classList.add('show');
+
+    // 2초(2000ms) 후에 'show' 클래스 제거
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 2000);
+}
+
+// ⭐ 3. URL 복사 함수 (알럿을 토스트로 변경)
+function copyToClipboard() {
+    // 현재 페이지의 URL 가져오기
+    const currentUrl = window.location.href;
+
+    // 클립보드에 복사
+    navigator.clipboard.writeText(currentUrl).then(() => {
+        // 복사 성공 시 토스트 알림 실행
+        showToast();
+    }).catch(err => {
+        // 예외 처리 (오래된 브라우저 등)
+        console.error('복사 실패:', err);
+
+        // 구형 방식 (fallback)
+        const textArea = document.createElement("textarea");
+        textArea.value = currentUrl;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            showToast(); // 성공 시 토스트 알림
+        } catch (err) {
+            alert("복사 실패했습니다. 주소창의 링크를 직접 복사해주세요."); // 최후의 보루
+        }
+        document.body.removeChild(textArea);
+    });
+}

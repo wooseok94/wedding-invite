@@ -60,6 +60,18 @@ body {
     line-height: 1.8;
 }
 
+.message p {
+    /* 최소 14px, 화면 폭의 4%, 최대 18px 사이에서 자동 조절 */
+    font-size: clamp(14px, 4vw, 18px);
+
+    line-height: 1.8;
+    margin-bottom: 10px;
+    word-break: keep-all;
+    /* ⭐ 단어가 중간에 잘리지 않고 통째로 다음 줄로 넘어가게 함 */
+    white-space: nowrap;
+    /* ⭐ 한 줄을 강제하고 싶을 때 사용하지만, 너무 길면 화면을 벗어날 수 있음 */
+}
+
 .gallery {
     position: relative;
     max-width: 800px;
@@ -207,4 +219,80 @@ a {
     color: #000;
     text-decoration: none;
     border-bottom: 1px solid #000;
+}
+
+/* --- 1. 공유 버튼 스타일 (정렬) --- */
+.share-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    /* 버튼 사이 간격 */
+    margin-top: 20px;
+}
+
+.share-buttons button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    /* 이미지 버튼 여백 제거 */
+    outline: none;
+}
+
+/* --- ⭐ 2. 토스트 알림 스타일 --- */
+#toast {
+    position: fixed;
+    bottom: 30px;
+    /* 화면 하단에서 30px 띄움 */
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    /* 처음에 아래로 살짝 내려둠 */
+
+    background-color: rgba(0, 0, 0, 0.8);
+    /* 약간 투명한 검정색 */
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 30px;
+    /* 둥근 모양 */
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 1000;
+    /* 최상단 레이어 */
+
+    /* 평소엔 투명하게 숨김 */
+    opacity: 0;
+    visibility: hidden;
+
+    /* 부드러운 전환 효과 */
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+}
+
+/* 토스트가 활성화되었을 때 (클래스 추가 시) */
+#toast.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+    /* 정위치로 올림 */
+}
+
+.copy-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    -webkit-tap-highlight-color: transparent;
+    /* 아이폰 터치 잔상 제거 */
+}
+
+.copy-btn svg,
+.copy-btn img {
+    width: 100%;
+    height: 100%;
+    display: block;
 }
