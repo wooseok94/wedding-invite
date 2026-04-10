@@ -144,11 +144,13 @@ body {
 /* 왼쪽 버튼 위치 */
 .prev-btn {
     left: 0;
+    touch-action: manipulation;
 }
 
 /* 오른쪽 버튼 위치 */
 .next-btn {
     right: 0;
+    touch-action: manipulation;
 }
 
 /* --- ⭐ CSS로 세련된 화살표 그리기 (::after 가상 요소 사용) --- */
