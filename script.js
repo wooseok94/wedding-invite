@@ -322,3 +322,21 @@ btn.addEventListener('click', (e) => {
         updateUI(false);
     }
 });
+
+const container = document.getElementById('image-container');
+const totalImages = 22; // 전체 이미지 개수
+
+for (let i = 1; i <= totalImages; i++) {
+    const img = document.createElement('img');
+
+    // 파일 경로 설정 (i가 1일 때 1.jpg, 2일 때 2.jpg ...)
+    img.src = `img/${i}.jpg`;
+
+    // 특정 이미지(예: 2번)에만 'active' 클래스를 주고 싶을 때
+    if (i === 1) {
+        img.classList.add('active');
+    }
+
+    // 컨테이너에 이미지 추가
+    container.appendChild(img);
+}
