@@ -79,12 +79,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // ⭐ 스와이프(끌어서 넘기기) 기능 추가
     slider.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
+    }, { passive: false });
 
     slider.addEventListener('touchend', (e) => {
         touchEndX = e.changedTouches[0].screenX;
         handleSwipe();
-    }, { passive: true });
+    }, { passive: false });
 
     function handleSwipe() {
         const swipeDistance = touchStartX - touchEndX;
@@ -160,12 +160,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 스와이프 로직 (동일하게 currentIndex 반영)
     let touchStartX = 0;
-    slider.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+    slider.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: false });
     slider.addEventListener('touchend', (e) => {
         const swipeDistance = touchStartX - e.changedTouches[0].screenX;
         if (swipeDistance > 50) nextBtn.click();
         else if (swipeDistance < -50) prevBtn.click();
-    }, { passive: true });
+    }, { passive: false });
 
     updateSlider(false);
 });
@@ -291,3 +291,34 @@ function updateDDay() {
 
 // 페이지 로드 시 실행
 document.addEventListener("DOMContentLoaded", updateDDay);
+
+const bgm = document.getElementById('bgm');
+const btn = document.getElementById('music-floating-btn');
+const icon = document.getElementById('status-icon');
+
+function updateUI(isPlaying) {
+    if (isPlaying) {
+        icon.innerText = '⏸️'; // 정지 아이콘
+    } else {
+        icon.innerText = '🎵'; // 재생 아이콘
+    }
+}
+
+// 첫 터치 시 재생 (브라우저 정책 대응)
+document.addEventListener('click', function () {
+    if (bgm.paused) {
+        bgm.play().then(() => updateUI(true));
+    }
+}, { once: true });
+
+// 버튼 클릭 토글
+btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (bgm.paused) {
+        bgm.play();
+        updateUI(true);
+    } else {
+        bgm.pause();
+        updateUI(false);
+    }
+});

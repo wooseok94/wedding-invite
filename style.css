@@ -670,3 +670,28 @@ details[open] summary::after {
     color: #f2a6a6;
     margin: 0 2px;
 }
+
+.floating-btn {
+    position: fixed;
+    top: 20px;
+    /* 위에서 20px */
+    left: 20px;
+    /* 왼쪽에서 20px */
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.7);
+    /* 반투명 화이트 */
+    backdrop-filter: blur(8px);
+    /* 배경 흐림 효과 */
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 10000;
+    transition: all 0.3s ease;
+    padding: 0;
+}
