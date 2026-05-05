@@ -714,3 +714,9 @@ details[open] summary::after {
     transition: all 0.3s ease;
     padding: 0;
 }
+
+html,
+body {
+    touch-action: manipulation;
+    overscroll-behavior: none;
+}
