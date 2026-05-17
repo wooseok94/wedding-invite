@@ -288,7 +288,7 @@ btn.addEventListener('click', (e) => {
 });
 
 const container = document.getElementById('image-container');
-const totalImages = 22; // 전체 이미지 개수
+const totalImages = 32; // 전체 이미지 개수
 
 for (let i = 1; i <= totalImages; i++) {
     const img = document.createElement('img');
